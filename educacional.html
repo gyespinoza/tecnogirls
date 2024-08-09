@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dimensión Educativa - TecnoGirls</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        .tab-content {
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" style="margin-top: 90px;">
+        <h1 class="text-center">Dimensión Educativa</h1><br /><br />
+        
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="detailed-tab" data-toggle="tab" href="#detailed" role="tab">Detalle por Indicador</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="summary-tab" data-toggle="tab" href="#summary" role="tab">Resumen General</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="detailed" role="tabpanel">
+                <div class="row">            
+                    <div class="col-12 d-flex justify-content-center align-items-center" style="height: 400px;">
+                        <canvas id="educationDetailedChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="summary" role="tabpanel">
+                <div class="row">            
+                    <div class="col-12 d-flex justify-content-center align-items-center" style="height: 400px;">
+                        <canvas id="educationSummaryChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Chart.register(ChartDataLabels);
+
+            // Detailed Chart
+            const ctxDetailed = document.getElementById('educationDetailedChart').getContext('2d');
+            new Chart(ctxDetailed, {
+                type: 'bar',
+                data: {
+                    labels: [
+                        'Uso de estrategias de procesamiento de información para mejorar la incorporación de nuevos conocimientos',
+                        'Aprovechamiento de elementos motivacionales del contexto educativo para potenciar el aprendizaje'
+                    ],
+                    datasets: [
+                        {
+                            label: 'Strongly agree',
+                            data: [67, 83],
+                            backgroundColor: '#1e4477',
+                        },
+                        {
+                            label: 'Agree',
+                            data: [28, 11],
+                            backgroundColor: '#4e7ac7',
+                        },
+                        {
+                            label: 'Neutral',
+                            data: [6, 6],
+                            backgroundColor: '#cccccc',
+                        },
+                        {
+                            label: 'Disagree',
+                            data: [0, 0],
+                            backgroundColor: '#f8c9b4',
+                        },
+                        {
+                            label: 'Strongly disagree',
+                            data: [0, 0],
+                            backgroundColor: '#d14f2a',
+                        }
+                    ]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'top' },
+                        datalabels: {
+                            color: 'white',
+                            font: { weight: 'bold' },
+                            formatter: (value) => value + '%',
+                            display: (context) => context.dataset.data[context.dataIndex] > 0,
+                        }
+                    },
+                    scales: {
+                        x: {
+                            stacked: true,
+                            max: 100,
+                            ticks: { callback: (value) => value + "%" }
+                        },
+                        y: { stacked: true },
+                    },
+                },
+            });
+
+            // Summary Chart
+            const ctxSummary = document.getElementById('educationSummaryChart').getContext('2d');
+            new Chart(ctxSummary, {
+                type: 'bar',
+                data: {
+                    labels: ['Strongly disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly agree'],
+                    datasets: [{
+                        label: 'Porcentaje',
+                        data: [0, 0, 6, 19, 75],
+                        backgroundColor: ['#d14f2a', '#f8c9b4', '#cccccc', '#4e7ac7', '#1e4477'],
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        datalabels: {
+                            color: 'white',
+                            font: { weight: 'bold' },
+                            formatter: (value) => value + '%',
+                            anchor: 'end',
+                            align: 'start',
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: { callback: (value) => value + "%" }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

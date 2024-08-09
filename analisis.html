@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dimensión Cualitativa - TecnoGirls</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: "Poppins", sans-serif;
+            background-color: #F4F6FA;
+            color: #000;
+            line-height: 1.6;
+        }
+        h2 {
+            font-size: 24px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            color: #1C21D1;
+            font-weight: 600;
+        }
+        p {
+            text-align: justify;
+        }
+        .quote {
+            background-color: rgba(28, 33, 209, 0.1);
+            border-left: 5px solid #1C21D1;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .chart-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .container {
+            background-color: #F4F6FA;
+            padding: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" style="margin-top: 50px;">
+        <h1 class="text-center">Resultados Cualitativos</h1><br /><br />
+        
+        <h2>Hallazgos Principales</h2>
+        <ul>
+            <li>Las participantes destacaron el aprendizaje en áreas como electrónica, robótica, ética, ciberseguridad y herramientas digitales.</li>
+            <li>El programa ayudó a descubrir y desarrollar habilidades latentes, mejorando el crecimiento personal y profesional.</li>
+            <li>Se sugirieron mejoras como la inclusión de temas de inteligencia artificial y tecnología actualizada, así como un mayor enfoque práctico.</li>
+            <li>Las participantes expresaron gratitud por el apoyo recibido y motivaron a otras jóvenes a unirse a programas similares.</li>
+        </ul>
+
+        <h2>Testimonios Destacados</h2>
+        <div class="quote">
+            <p>"Fue bastante emocionante, por ejemplo, en la materia de robótica o electrónica... nos proporcionaron herramientas bastante interactivas y eran iguales o incluso mejores que hacerlo presencialmente." - Participante 2</p>
+        </div>
+        <div class="quote">
+            <p>"...tal vez no sabíamos de habilidades que teníamos escondidas... me ayudó mucho a ver habilidades que pensaba que tal vez no tenía." - Participante 1</p>
+        </div>
+        <div class="quote">
+            <p>"Haber participado en este proyecto fue abrir nuevas oportunidades, tanto profesionales como personales." - Participante 3</p>
+        </div>
+
+        <h2>Impacto en las Carreras</h2>
+        <div class="chart-container">
+            <canvas id="careerImpactChart"></canvas>
+        </div>
+
+      
+    </div>
+
+    <script>
+        const ctx = document.getElementById('careerImpactChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Ing. en Sistemas Informáticos y Redes', 'Ing. en Sistemas y Gestión de BD', 'Lic. en Marketing'],
+                datasets: [{
+                    label: 'Año de estudio actual',
+                    data: [4, 3, 4],
+                    backgroundColor: [
+                        'rgba(28, 33, 209, 0.7)',
+                        'rgba(28, 33, 209, 0.5)',
+                        'rgba(28, 33, 209, 0.3)'
+                    ],
+                    borderColor: [
+                        'rgba(28, 33, 209, 1)',
+                        'rgba(28, 33, 209, 1)',
+                        'rgba(28, 33, 209, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 5,
+                        title: {
+                            display: true,
+                            text: 'Año de estudio'
+                        }
+                    }
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Progreso Académico de las Participantes',
+                        font: {
+                            size: 16,
+                            weight: 'bold'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
